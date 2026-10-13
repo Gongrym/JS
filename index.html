@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>연산자</title>
+  </head>
+  <body>
+    <script>
+      <!-- 연산자: 계산하거나 비교할때 쓰는 기호 -->
+      <!-- 산술 연산자 -->
+      let a = 10;
+      let b = 3;
+      console.log(a + b); // 더하기
+      console.log(a - b); // 빼기
+      console.log(a * b); // 곱하기
+      console.log(a / b); // 나누기
+      console.log(a % b); // 나머지구하기
+      <!-- 비교 연산자 (맞는지 확인)-->
+      console.log(5 > 3); // = true
+      console.log(5 < 3); // = false
+      console.log(5 == 3); // = false
+      console.log(5 === "5"); // = false // 숫자(문자) 자체는 같아도 자료형이 다르니까 다른걸로 판별
+      console.log(5 != 3); // = true // 서로 다른지 판별. 다르면 트루
+      console.log(5 !== "5"); // = true // 서로 완전히 다른지 판별. 완전히 다르면 트루
+      <!-- 논리 연산자 (조건이 여러개일때) -->
+      let age = 20;
+      console.log(age > 18 && age > 30); // &&: AND 임
+      console.log(age > 18 || age > 30); // ||: OR 임
+      let isLogin = true;
+      console.log(!isLogin); // !: NOT임. 부정연산자. 불리언값을 반대로 바꿔줌
+      <!-- 증가/감소 연산자 -->
+      let count = 5;
+      count++; // ++: 증가
+      console.log(count); // = 6
+      count--; // --: 감소
+      console.log(count); // = 5
+    </script>
+  </body>
+</html>
