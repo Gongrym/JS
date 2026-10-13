@@ -1,0 +1,29 @@
+@import url("reset.css");
+body {
+  background-color: aqua;
+}
+
+.box {
+  width: 90%;
+  max-width: 500px;
+  min-width: 250px;
+  margin: auto;
+}
+
+h1 {
+  /* display: none; */
+  font-size: 2vw;
+  font-size: 3.2rem;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 390px) {
+  .box {
+    border-radius: 50%;
+  }
+}
