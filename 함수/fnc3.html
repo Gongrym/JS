@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배경색 변경</title>
+  </head>
+  <body>
+    <button id="sky">하늘색</button>
+    <button id="pink">핑크색</button>
+    <button id="yellow">노란색</button>
+
+    <script>
+      const skyBtn = document.querySelector("#sky");
+      const pinkBtn = document.querySelector("#pink");
+      const yellowBtn = document.querySelector("#yellow");
+
+      function changeColor(color) {
+        document.body.style.backgroundColor = color;
+      }
+
+      skyBtn.addEventListener("click", function () {
+        changeColor("skyblue");
+      });
+
+      pinkBtn.addEventListener("click", function () {
+        changeColor("pink");
+      });
+
+      yellowBtn.addEventListener("click", function () {
+        changeColor("yellow");
+      });
+    </script>
+  </body>
+</html>
