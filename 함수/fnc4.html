@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이름 입력 실습</title>
+  </head>
+  <body>
+    <input type="text" id="nameInput" placeholder="이름 입력" />
+    <button id="showBtn">확인</button>
+    <p id="result"></p>
+
+    <script>
+      const nameInput = document.querySelector("#nameInput");
+      const showBtn = document.querySelector("#showBtn");
+      const result = document.querySelector("#result");
+
+      showBtn.addEventListener("click", function () {
+        const name = nameInput.value;
+
+        if (name.trim() === "") {
+          result.textContent = "이름을 입력해주세요!";
+        } else {
+          result.textContent = `안녕하세요, ${name}님!`;
+        }
+      });
+    </script>
+  </body>
+</html>

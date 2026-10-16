@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 이벤트 연결 -->
+    <button id="btn">눌러보세요</button>
+    <input type="text" id="inputName" placeholder="이름을 입력하세요" />
+    <form id="myForm">
+      <input type="text" id="inputEmail" placeholder="이메일을 입력하세요" />
+      <button type="submit">제출</button>
+    </form>
+    <script>
+      const btn = document.querySelector("#btn");
+      btn.addEventListener("click", () => {
+        console.log("click");
+        btn.style.color = "red";
+      });
+      const userName = document.querySelector("#inputName");
+      userName.addEventListener("input", () => {
+        console.log(userName.value);
+      });
+      const form = document.querySelector("myForm");
+      form.addEventListener("submit", (event) => {});
+    </script>
+  </body>
+</html>

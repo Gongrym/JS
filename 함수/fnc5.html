@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탭 메뉴</title>
+
+    <style>
+      button {
+        padding: 10px 20px;
+        cursor: pointer;
+        border: none;
+        background-color: #eee;
+      }
+
+      button.active {
+        background-color: steelblue;
+        color: white;
+      }
+
+      .menu {
+        display: none;
+        padding: 30px;
+        margin-top: 10px;
+        background-color: #f0f5fa;
+      }
+
+      .menu.active {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="menuBtn1" class="active">메뉴 1</button>
+    <button id="menuBtn2">메뉴 2</button>
+    <button id="menuBtn3">메뉴 3</button>
+
+    <div id="menu1" class="menu active">안녕</div>
+    <div id="menu2" class="menu">뭘봐</div>
+    <div id="menu3" class="menu">후후</div>
+
+    <script>
+      const menuBtn1 = document.querySelector("#menuBtn1");
+      const menuBtn2 = document.querySelector("#menuBtn2");
+      const menuBtn3 = document.querySelector("#menuBtn3");
+
+      const menu1 = document.querySelector("#menu1");
+      const menu2 = document.querySelector("#menu2");
+      const menu3 = document.querySelector("#menu3");
+
+      function showMenu(button, menu) {
+        // 모든 버튼과 메뉴의 active 제거
+        document.querySelectorAll("button").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        document.querySelectorAll(".menu").forEach((item) => {
+          item.classList.remove("active");
+        });
+
+        // 클릭한 버튼과 해당 메뉴에 active 추가
+        button.classList.add("active");
+        menu.classList.add("active");
+      }
+
+      menuBtn1.addEventListener("click", function () {
+        showMenu(menuBtn1, menu1);
+      });
+
+      menuBtn2.addEventListener("click", function () {
+        showMenu(menuBtn2, menu2);
+      });
+
+      menuBtn3.addEventListener("click", function () {
+        showMenu(menuBtn3, menu3);
+      });
+    </script>
+  </body>
+</html>

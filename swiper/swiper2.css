@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.visual {
+  width: 100%;
+  overflow: hidden;
+}
+
+.visualSwiper {
+  width: 100%;
+  height: 500px;
+}
+
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: white;
+}
+
+.swiper-pagination-bullet {
+  background: white;
+}
+
+@media (max-width: 768px) {
+  .visualSwiper {
+    height: 300px;
+  }
+}

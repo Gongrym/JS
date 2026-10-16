@@ -1,0 +1,124 @@
+<!-- <!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+      }
+      .red {
+        color: #fff;
+      }
+      .blue {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        color: #fff;
+        border-radius:;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" id="myBox">안녕하세요!</div>
+    <button id="addBtn"></button>
+    <button id="removeBtn"></button>
+    <button id="toggleBtn"></button>
+    <button id="checkBtn"></button>
+  </body>
+  <script>
+    const box = document.querySelector("#myBox");
+    const addBtn = document.querySelector("#addBtn");
+    const removeB = document.querySelector("#removeBtn");
+    addBtn.addEventListener("click", () => {
+      box.classList.add("red");
+    });
+    removeB.addEventListener("click", () => {
+      box.classList.remove("red");
+    });
+    removeB.addEventListener("click", () => {
+      box.classList.toggle("blueCh");
+    });
+    removeB.addEventListener("click", () => {
+      box.classList.check("blueCh");
+    });
+  </script>
+</html> -->
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>classList 실습</title>
+
+    <style>
+      .box {
+        width: 300px;
+        padding: 30px;
+        margin-bottom: 20px;
+        background-color: lightgray;
+        text-align: center;
+        border-radius: 10px;
+        transition: 0.3s;
+      }
+
+      .red {
+        background-color: tomato;
+        color: white;
+      }
+
+      button {
+        padding: 10px 15px;
+        margin-right: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box" id="myBox">안녕하세요!</div>
+
+    <button id="addBtn">클래스 추가</button>
+    <button id="removeBtn">클래스 제거</button>
+    <button id="toggleBtn">클래스 토글</button>
+    <button id="checkBtn">클래스 확인</button>
+
+    <p id="result"></p>
+
+    <script>안녕하세요
+      const box = document.querySelector("#myBox");
+
+      const addBtn = document.querySelector("#addBtn");
+      const removeBtn = document.querySelector("#removeBtn");
+      const toggleBtn = document.querySelector("#toggleBtn");
+      const checkBtn = document.querySelector("#checkBtn");
+
+      const result = document.querySelector("#result");
+
+      // 1. 클래스 추가
+      addBtn.addEventListener("click", () => {
+        box.classList.add("red");
+      });
+
+      // 2. 클래스 제거
+      removeBtn.addEventListener("click", () => {
+        box.classList.remove("red");
+      });
+
+      // 3. 클래스 토글
+      toggleBtn.addEventListener("click", () => {
+        box.classList.toggle("red");
+      });
+
+      // 4. 클래스 존재 여부 확인
+      checkBtn.addEventListener("click", () => {
+        const hasRed = box.classList.contains("red");
+
+        result.textContent = hasRed
+          ? "red 클래스가 존재합니다."
+          : "red 클래스가 없습니다.";
+      });
+    </script>
+  </body>
+</html>
