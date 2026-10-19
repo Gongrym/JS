@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>이벤트 위임 실습</title>
+    <title>이벤트 실습</title>
+
     <style>
       li {
         cursor: pointer;
@@ -52,10 +53,23 @@
       .imgbox img:hover {
         border-color: blue;
       }
+
+      /* 삭제 버튼 */
+      #todo button {
+        margin-left: 15px;
+        cursor: pointer;
+        padding: 4px 10px;
+      }
+
+      #todo button:hover {
+        background-color: #ffdddd;
+        color: red;
+      }
     </style>
   </head>
 
   <body>
+    <!-- 1. 메뉴 클릭 실습 -->
     <ul id="menu">
       <li>회사소개</li>
       <li>제품소개</li>
@@ -66,17 +80,28 @@
       <!-- 내가 클릭한 글자 JS 출력 -->
     </div>
 
-    <!-- 큰 이미지 -->
+    <!-- 2. 이미지 변경 실습 -->
     <img src="images/cup-1.png" alt="red cup" id="big" />
 
-    <!-- 작은 이미지 -->
     <div class="imgbox">
       <img src="images/cup-1.png" alt="red" />
       <img src="images/cup-2.png" alt="blue" />
     </div>
 
+    <!-- 3. 삭제 버튼 실습 -->
+    <h2>오늘 할 일</h2>
+
+    <ul id="todo">
+      <li>공부하기 <button>삭제</button></li>
+      <li>운동하기 <button>삭제</button></li>
+      <li>청소하기 <button>삭제</button></li>
+    </ul>
+
     <script>
-      // 메뉴 클릭 이벤트
+      // ==================================
+      // 1. 메뉴 클릭 이벤트 (이벤트 위임)
+      // ==================================
+
       const menuE = document.getElementById("menu");
       const result = document.getElementById("result");
 
@@ -86,16 +111,34 @@
         }
       });
 
-      // 작은 이미지 클릭 시 큰 이미지로 변경
+      // ==================================
+      // 2. 작은 이미지 클릭 시 큰 이미지 변경
+      // ==================================
+
       const imgbox = document.querySelector(".imgbox");
       const big = document.querySelector("#big");
+      const imgs = document.querySelectorAll(".imgbox img");
 
-      imgbox.addEventListener("click", (e) => {
-        // 클릭한 요소가 이미지인지 확인
-        if (e.target.tagName === "IMG") {
-          // 큰 이미지 변경
-          big.src = e.target.src;
-          big.alt = e.target.alt;
+      imgs.forEach((img) => {
+        console.log(img);
+
+        img.addEventListener("click", () => {
+          big.src = img.src;
+          big.alt = img.alt;
+        });
+      });
+
+      // ==================================
+      // 3. 삭제 버튼 클릭 시 해당 항목 삭제
+      // ==================================
+
+      const todo = document.getElementById("todo");
+
+      todo.addEventListener("click", (e) => {
+        // 클릭한 요소가 버튼인지 확인
+        if (e.target.tagName === "BUTTON") {
+          // 버튼의 부모 요소(li)를 삭제
+          e.target.parentElement.remove();
         }
       });
     </script>
