@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .box{
+            width:200px;
+            height: 200px;
+            background-color: rgb(121,122,122);
+            margin-bottom: 20px;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>keyup 이벤트</h1>
+    <div class="box" box1">box1</div>
+    <div class="box" box2">box2</div>
+    <div class="box" box3">box3</div>
+    <div class="box" box4">box4</div>
+    <script>
+  document.addEventListener("keyup", (e) => {
+    const keyB = e.key.toLowerCase();
+    console.log(keyB);
+
+    let box = null;
+
+    if (keyB === "enter") {
+      box = document.querySelector(".box1");
+    } else if (keyB === "shift") {
+      box = document.querySelector(".box2");
+    } else if (keyB === "g") {
+      box = document.querySelector(".box3");
+    } else if (keyB === "c") {
+      box = document.querySelector(".box4");
+    }
+
+    console.log(box);
+
+    if (box !== null) {
+      box.classList.add("active");
+    }
+  });
+
+    </script>
+  </body>
+</html>
