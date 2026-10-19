@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이벤트 위임 실습</title>
+    <style>
+      li {
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      li:hover {
+        color: blue;
+        font-weight: bold;
+      }
+
+      #result {
+        margin-top: 20px;
+      }
+
+      #result span {
+        color: blue;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="menu">
+      <li>회사소개</li>
+      <li>제품소개</li>
+      <li>고객센터</li>
+    </ul>
+
+    <div id="result">
+      <!-- 내가 클릭한 글자 JS 출력 -->
+    </div>
+
+    <script>
+      const menuE = document.getElementById("menu");
+      const result = document.getElementById("result");
+
+      menuE.addEventListener("click", (e) => {
+        // li 요소를 클릭했을 때만 실행
+        if (e.target.tagName === "LI") {
+          result.innerHTML += `<p>내가 클릭한 메뉴 : <span>${e.target.innerText}</span></p>`;
+        }
+      });
+    </script>
+  </body>
+</html>
