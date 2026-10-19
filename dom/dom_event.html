@@ -23,8 +23,38 @@
         color: blue;
         font-weight: bold;
       }
+
+      /* 큰 이미지 */
+      #big {
+        display: block;
+        width: 300px;
+        height: 300px;
+        object-fit: contain;
+        margin-top: 30px;
+      }
+
+      /* 작은 이미지 영역 */
+      .imgbox {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      .imgbox img {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+
+      .imgbox img:hover {
+        border-color: blue;
+      }
     </style>
   </head>
+
   <body>
     <ul id="menu">
       <li>회사소개</li>
@@ -36,14 +66,36 @@
       <!-- 내가 클릭한 글자 JS 출력 -->
     </div>
 
+    <!-- 큰 이미지 -->
+    <img src="images/cup-1.png" alt="red cup" id="big" />
+
+    <!-- 작은 이미지 -->
+    <div class="imgbox">
+      <img src="images/cup-1.png" alt="red" />
+      <img src="images/cup-2.png" alt="blue" />
+    </div>
+
     <script>
+      // 메뉴 클릭 이벤트
       const menuE = document.getElementById("menu");
       const result = document.getElementById("result");
 
       menuE.addEventListener("click", (e) => {
-        // li 요소를 클릭했을 때만 실행
         if (e.target.tagName === "LI") {
           result.innerHTML += `<p>내가 클릭한 메뉴 : <span>${e.target.innerText}</span></p>`;
+        }
+      });
+
+      // 작은 이미지 클릭 시 큰 이미지로 변경
+      const imgbox = document.querySelector(".imgbox");
+      const big = document.querySelector("#big");
+
+      imgbox.addEventListener("click", (e) => {
+        // 클릭한 요소가 이미지인지 확인
+        if (e.target.tagName === "IMG") {
+          // 큰 이미지 변경
+          big.src = e.target.src;
+          big.alt = e.target.alt;
         }
       });
     </script>
