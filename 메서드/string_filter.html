@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품 검색</title>
+
+    <style>
+      body {
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 0 20px;
+        font-family: Arial, sans-serif;
+        color: #333;
+      }
+
+      input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+      }
+
+      input:focus {
+        outline: 2px solid #777;
+        outline-offset: 1px;
+      }
+
+      #count {
+        margin: 16px 0 8px;
+        color: #666;
+        font-size: 14px;
+      }
+
+      #productList {
+        padding: 0;
+        list-style: none;
+      }
+
+      #productList li {
+        margin-bottom: 8px;
+        padding: 12px;
+        border-radius: 6px;
+        background-color: #f3f3f3;
+      }
+
+      .empty {
+        color: #888;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>상품 검색</h2>
+
+    <!-- 검색창 -->
+    <input type="text" placeholder="상품 이름을 입력하세요" id="search" />
+
+    <!-- 검색 결과 개수 -->
+    <p id="count"></p>
+
+    <!-- 검색 결과 -->
+    <ul id="productList"></ul>
+
+    <script>
+      // 상품 데이터
+      const products = ["티셔츠", "청바지", "운동화", "모자"];
+
+      // HTML 요소 가져오기
+      const search = document.querySelector("#search");
+      const productList = document.querySelector("#productList");
+      const count = document.querySelector("#count");
+
+      // 상품 출력 함수
+      function showProductList(items) {
+        // 기존 목록 초기화
+        productList.innerHTML = "";
+
+        // 검색 결과 개수 표시
+        count.textContent = `검색 결과: ${items.length}개`;
+
+        // 검색 결과가 없는 경우
+        if (items.length === 0) {
+          productList.innerHTML =
+            '<li class="empty">검색 결과가 없습니다.</li>';
+          return;
+        }
+
+        // 상품을 하나씩 화면에 출력
+        items.forEach((product) => {
+          productList.innerHTML += `<li>${product}</li>`;
+        });
+      }
+
+      // 상품 검색 함수
+      function searchProducts() {
+        const keyword = search.value.trim().toLowerCase();
+
+        // 검색어가 포함된 상품만 필터링
+        const filteredProducts = products.filter((product) => {
+          return product.toLowerCase().includes(keyword);
+        });
+
+        // 검색 결과 출력
+        showProductList(filteredProducts);
+      }
+
+      // 입력할 때마다 실시간 검색
+      search.addEventListener("input", searchProducts);
+
+      // 처음 화면에 전체 상품 표시
+      showProductList(products);
+    </script>
+  </body>
+</html>

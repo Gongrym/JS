@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탭 기능</title>
+
+    <style>
+      /* 탭 버튼 */
+      .tab-btn {
+        padding: 10px 20px;
+        cursor: pointer;
+        border: 1px solid aqua;
+        background-color: rgb(177, 253, 253);
+        transition: 0.2s;
+      }
+
+      /* 마우스를 올렸을 때 */
+      .tab-btn:hover {
+        background-color: rgb(130, 235, 235);
+      }
+
+      /* 활성화된 탭 버튼 */
+      .tab-btn.active {
+        border-color: blueviolet;
+        background-color: rgb(221, 238, 238);
+        color: blueviolet;
+        font-weight: bold;
+      }
+
+      /* 탭 콘텐츠: 기본적으로 숨김 */
+      .tab-content {
+        display: none;
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-top: 10px;
+        min-height: 100px;
+      }
+
+      /* 활성화된 콘텐츠만 표시 */
+      .tab-content.active {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>탭 기능 실습</h2>
+
+    <!-- 탭 버튼 -->
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="0">탭 1</button>
+      <button class="tab-btn" data-tab="1">탭 2</button>
+      <button class="tab-btn" data-tab="2">탭 3</button>
+    </div>
+
+    <!-- 탭 내용 -->
+    <div class="tab-content active">
+      <h3>탭 1 내용</h3>
+      <p>첫 번째 탭의 콘텐츠입니다.</p>
+    </div>
+
+    <div class="tab-content">
+      <h3>탭 2 내용</h3>
+      <p>두 번째 탭의 콘텐츠입니다.</p>
+    </div>
+
+    <div class="tab-content">
+      <h3>탭 3 내용</h3>
+      <p>세 번째 탭의 콘텐츠입니다.</p>
+    </div>
+
+    <script>
+      // 모든 탭 버튼과 콘텐츠 가져오기
+      const tabBtns = document.querySelectorAll(".tab-btn");
+      const tabContents = document.querySelectorAll(".tab-content");
+
+      // 각 버튼에 클릭 이벤트 등록
+      tabBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // 클릭한 버튼의 탭 번호 가져오기
+          const tabIndex = Number(btn.dataset.tab);
+
+          // 모든 버튼의 active 클래스 제거
+          tabBtns.forEach((button) => {
+            button.classList.remove("active");
+          });
+
+          // 모든 콘텐츠의 active 클래스 제거
+          tabContents.forEach((content) => {
+            content.classList.remove("active");
+          });
+
+          // 클릭한 버튼 활성화
+          btn.classList.add("active");
+
+          // 해당하는 콘텐츠 활성화
+          tabContents[tabIndex].classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
