@@ -8,7 +8,16 @@
   <body>
     <!-- filter() 는 조건에 맞는 데이터만 골라내는 메서드 -->
     <script>
-        
+      const scores = [45, 80, 55, 90, 70];
+      /* console.log(scores); */
+      const passed = scores.filter((score) => {
+        /* console.log(score); */
+        return score >= 60;
+      });
+      console.log(passed);
+      const prices = [3000, 8000, 5000, 12000, 4000];
+      console.log(prices);
+      const result = prices.filter((price) => {});
     </script>
   </body>
 </html>

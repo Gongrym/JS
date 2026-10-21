@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>forEach(), map(), filter()로 상품 관리</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 30px 20px;
+        font-family: Arial, sans-serif;
+        color: #333;
+      }
+
+      h1 {
+        margin-bottom: 24px;
+      }
+
+      .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      button {
+        padding: 10px 16px;
+        border: none;
+        border-radius: 6px;
+        background-color: #333;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      button:hover {
+        background-color: #666;
+      }
+
+      button.active {
+        background-color: #167d63;
+      }
+
+      #count {
+        margin: 20px 0 12px;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .product-list {
+        width: 100%;
+        max-width: 600px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .product {
+        padding: 16px;
+        border: 1px solid #eee0cc;
+        border-radius: 10px;
+        background-color: antiquewhite;
+      }
+
+      .product h3 {
+        margin: 0 0 12px;
+        font-size: 18px;
+      }
+
+      .product p {
+        margin: 8px 0;
+        font-size: 14px;
+      }
+
+      .product .price {
+        font-size: 17px;
+        font-weight: bold;
+        color: #a04d20;
+      }
+
+      .product .sale-label {
+        display: inline-block;
+        margin-bottom: 8px;
+        padding: 4px 7px;
+        border-radius: 4px;
+        background-color: #d7f1e5;
+        color: #167d63;
+        font-size: 12px;
+      }
+
+      .empty-message {
+        grid-column: 1 / -1;
+        padding: 30px 0;
+        color: #888;
+        text-align: center;
+      }
+
+      @media (max-width: 390px) {
+        body {
+          padding: 20px 14px;
+        }
+
+        .product-list {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>온라인 쇼핑몰</h1>
+
+    <div class="buttons">
+      <button id="allBtn" class="active">전체 상품</button>
+      <button id="saleBtn">할인 가격 보기</button>
+      <button id="filterBtn">5만원 이하</button>
+    </div>
+
+    <p id="count">상품을 불러오는 중...</p>
+
+    <div id="productList" class="product-list"></div>
+
+    <script>
+      // 상품 데이터
+      const products = [
+        { id: 1, name: "티셔츠", price: 20000, category: "의류" },
+        { id: 2, name: "청바지", price: 45000, category: "의류" },
+        { id: 3, name: "운동화", price: 80000, category: "신발" },
+        { id: 4, name: "모자", price: 15000, category: "잡화" },
+      ];
+
+      // HTML 요소 가져오기
+      const productList = document.querySelector("#productList");
+      const count = document.querySelector("#count");
+      const allBtn = document.querySelector("#allBtn");
+      const saleBtn = document.querySelector("#saleBtn");
+      const filterBtn = document.querySelector("#filterBtn");
+
+      // 상품을 화면에 출력하는 공통 함수
+      function renderProducts(items, isSale = false) {
+        // 기존 상품 초기화
+        productList.innerHTML = "";
+
+        // 상품 개수 출력
+        count.textContent = `총 ${items.length}개의 상품`;
+
+        // 상품이 없을 때
+        if (items.length === 0) {
+          productList.innerHTML =
+            '<p class="empty-message">조건에 맞는 상품이 없습니다.</p>';
+          return;
+        }
+
+        // 상품 목록을 HTML로 변환
+        const productHTML = items.map((product) => {
+          return `
+            <div class="product">
+              ${isSale ? '<span class="sale-label">20% 할인</span>' : ""}
+              <h3>${product.name}</h3>
+              <p>분류: ${product.category}</p>
+              <p class="price">${product.price.toLocaleString("ko-KR")}원</p>
+            </div>
+          `;
+        });
+
+        // 만들어진 HTML을 화면에 출력
+        productList.innerHTML = productHTML.join("");
+      }
+
+      // 현재 선택된 버튼 표시
+      function setActiveButton(activeBtn) {
+        [allBtn, saleBtn, filterBtn].forEach((btn) => {
+          btn.classList.toggle("active", btn === activeBtn);
+        });
+      }
+
+      // 전체 상품: forEach() 활용
+      function showAllProducts() {
+        const allProducts = [];
+
+        products.forEach((product) => {
+          allProducts.push(product);
+        });
+
+        renderProducts(allProducts);
+        setActiveButton(allBtn);
+      }
+
+      // 할인 상품: map() 활용
+      function showSaleProducts() {
+        const saleProducts = products.map((product) => {
+          return {
+            ...product,
+            price: product.price * 0.8,
+          };
+        });
+
+        renderProducts(saleProducts, true);
+        setActiveButton(saleBtn);
+      }
+
+      // 5만원 이하 상품: filter() 활용
+      function showFilteredProducts() {
+        const filteredProducts = products.filter((product) => {
+          return product.price <= 50000;
+        });
+
+        renderProducts(filteredProducts);
+        setActiveButton(filterBtn);
+      }
+
+      // 버튼 이벤트 연결
+      allBtn.addEventListener("click", showAllProducts);
+      saleBtn.addEventListener("click", showSaleProducts);
+      filterBtn.addEventListener("click", showFilteredProducts);
+
+      // 처음 접속했을 때 전체 상품 표시
+      showAllProducts();
+    </script>
+  </body>
+</html>
