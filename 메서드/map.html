@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+  const prices = [1000, 2000, 3000];
+  console.log(prices);
+  const newPrices = prices.map((price) => {
+    console.log(price);
+    return price + 1000;
+  });
+  // 돌려받은 값들을 모아서 새 배열로 만든다.
+  console.log(newPrices); //[2000, 3000, 4000]
+  const numbers = [1, 2, 3, 4];
+  /* const result = numbers.map((num) => {
+    // console.log(num);
+    return num * 2;
+  }); */
+  const result = numbers.map((num)=>num*2) // 화살표 함수 쓸때는 객체가 없으면 리턴 안써도됨
+  console.log(result);
+</script>
+</body>
+</html>
+  </body>
+</html>
