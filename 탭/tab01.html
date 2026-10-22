@@ -4,98 +4,62 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>탭 기능</title>
-
     <style>
-      /* 탭 버튼 */
       .tab-btn {
-        padding: 10px 20px;
+        padding: 10px;
         cursor: pointer;
-        border: 1px solid aqua;
+        border: 1px solid #26b4be;
         background-color: rgb(177, 253, 253);
-        transition: 0.2s;
       }
-
-      /* 마우스를 올렸을 때 */
-      .tab-btn:hover {
-        background-color: rgb(130, 235, 235);
-      }
-
-      /* 활성화된 탭 버튼 */
       .tab-btn.active {
         border-color: blueviolet;
-        background-color: rgb(221, 238, 238);
-        color: blueviolet;
-        font-weight: bold;
+        background-color: rgb(221, 186, 255);
       }
-
-      /* 탭 콘텐츠: 기본적으로 숨김 */
       .tab-content {
         display: none;
         border: 1px solid #ccc;
-        padding: 20px;
-        margin-top: 10px;
-        min-height: 100px;
+        padding: 15px;
       }
-
-      /* 활성화된 콘텐츠만 표시 */
       .tab-content.active {
         display: block;
       }
     </style>
   </head>
-
   <body>
-    <h2>탭 기능 실습</h2>
-
     <!-- 탭 버튼 -->
-    <div class="tab-buttons">
-      <button class="tab-btn active" data-tab="0">탭 1</button>
-      <button class="tab-btn" data-tab="1">탭 2</button>
-      <button class="tab-btn" data-tab="2">탭 3</button>
-    </div>
-
+    <button class="tab-btn active">탭 1</button>
+    <button class="tab-btn">탭 2</button>
+    <button class="tab-btn">탭 3</button>
     <!-- 탭 내용 -->
-    <div class="tab-content active">
-      <h3>탭 1 내용</h3>
-      <p>첫 번째 탭의 콘텐츠입니다.</p>
-    </div>
-
-    <div class="tab-content">
-      <h3>탭 2 내용</h3>
-      <p>두 번째 탭의 콘텐츠입니다.</p>
-    </div>
-
-    <div class="tab-content">
-      <h3>탭 3 내용</h3>
-      <p>세 번째 탭의 콘텐츠입니다.</p>
-    </div>
-
+    <div class="tab-content active">탭 1 내용</div>
+    <div class="tab-content">탭 2 내용</div>
+    <div class="tab-content">탭 3 내용</div>
     <script>
-      // 모든 탭 버튼과 콘텐츠 가져오기
-      const tabBtns = document.querySelectorAll(".tab-btn");
-      const tabContents = document.querySelectorAll(".tab-content");
+      const tabs = document.querySelectorAll(".tab-btn");
+      const contents = document.querySelectorAll(".tab-content");
+      //   console.log(contents[2]);
 
-      // 각 버튼에 클릭 이벤트 등록
-      tabBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          // 클릭한 버튼의 탭 번호 가져오기
-          const tabIndex = Number(btn.dataset.tab);
+      // console.log(tabs);
+      tabs.forEach((tab, index) => {
+        // console.log(tab, index);
 
-          // 모든 버튼의 active 클래스 제거
-          tabBtns.forEach((button) => {
-            button.classList.remove("active");
+        tab.addEventListener("click", () => {
+          // 버튼 활성화 초기화
+          tabs.forEach((t) => {
+            // console.log(t);
+            t.classList.remove("active");
           });
-
-          // 모든 콘텐츠의 active 클래스 제거
-          tabContents.forEach((content) => {
-            content.classList.remove("active");
+          // 내용 활성화 초기화
+          contents.forEach((c) => {
+            c.classList.remove("active");
           });
-
-          // 클릭한 버튼 활성화
-          btn.classList.add("active");
-
-          // 해당하는 콘텐츠 활성화
-          tabContents[tabIndex].classList.add("active");
+          // 해당하는 탭 활성화
+          tab.classList.add("active");
+          //   해당하는 내용 활성화
+          //   contents[index]
+          //   console.log(index); //0
+          //   console.log(contents[index]); //contents[0] 내용 1
+          contents[index].classList.add("active");
         });
       });
     </script>
